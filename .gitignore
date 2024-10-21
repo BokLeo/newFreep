@@ -15,5 +15,6 @@ src/main/resources/Wallet_FreepDB/README
 src/main/resources/Wallet_FreepDB/sqlnet.ora
 src/main/resources/Wallet_FreepDB/tnsnames.ora
 src/main/resources/Wallet_FreepDB/truststore.jks
-target/
+target/freepproject-1.0.0-BUILD-SNAPSHOT.war
+/target/
 __setting/

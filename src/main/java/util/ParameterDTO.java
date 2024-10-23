@@ -33,4 +33,13 @@ import lombok.Data;
 	//페이징 기능 추가
 	private int start; //게시물 구간의 시작
 	private int end; //게시물 구간의 끝
+	
+	@Override
+    public String toString() {
+        return "ParameterDTO{" +
+                "cate=" + cate +
+                ", searchField='" + searchField + '\'' +
+                ", searchTxt='" + searchTxt + '\'' +
+                '}';
+    }
 }

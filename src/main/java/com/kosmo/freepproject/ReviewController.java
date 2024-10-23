@@ -246,7 +246,7 @@ public class ReviewController {
 	public String detail(Model model, HttpServletRequest req) {
 
 		ReviewBoardDTO boardDTO = new ReviewBoardDTO();
-		boardDTO.setRv_idx( Integer.parseInt(req.getParameter("idx"))); 
+		boardDTO.setRv_idx( Integer.parseInt(req.getParameter("idx")));
 		
 		ReviewBoardDTO dto = 
 				sqlSession.getMapper(ReviewBoardDAOImpl.class).view(boardDTO);
@@ -582,10 +582,11 @@ public class ReviewController {
 					
 				}
 			}
+			model.addAttribute("isLike", true);
 		}else {
-			
+			model.addAttribute("isLike", false);
 		}
-
+		
 		model.addAttribute("lists", lists);
 		model.addAttribute("listsBest", listsBest);
 		return "community/review";
@@ -676,16 +677,18 @@ public class ReviewController {
 					dto.setLike(false);
 				}
 			}
-		}else {
+			model.addAttribute("isLike", true);
+			//회원코드 가져오기 
+			int m_code = sqlSession.getMapper(ReviewBoardDAOImpl.class).findm_code(principal.getName());
 			
+			String m_codeTemp = Integer.toString(m_code);
+			ParameterDTO paramDto = new ParameterDTO();
+			paramDto.setM_code(m_codeTemp);
+		}else {
+			model.addAttribute("isLike", false);
 		}
 		
-		//회원코드 가져오기 
-		int m_code = sqlSession.getMapper(ReviewBoardDAOImpl.class).findm_code(principal.getName());
 		
-		String m_codeTemp = Integer.toString(m_code);
-		ParameterDTO paramDto = new ParameterDTO();
-		paramDto.setM_code(m_codeTemp);
 		int likeCount = sqlSession.getMapper(MypageImpl.class).getMyReviewLikeCount(Integer.parseInt(req.getParameter("idx")));
 		dto.setLikeCount(likeCount);
 		

@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" content="${_csrf.token}">
+	<meta name="_csrf_header" content="${_csrf.headerName}">
     <title>나만의 맞춤 피자 Free</title>
 
     <!-- font 영역 -->
@@ -24,9 +26,31 @@
         rel="stylesheet">
     <!-- js 라이브러리 영역 -->
     <script src="../js/jquery-3.6.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+	<script type="text/javascript">
+	 // 페이지에서 meta 태그로 CSRF 토큰 정보 가져오기
+    var token = $('meta[name="_csrf"]').attr('content');
+    var header = $('meta[name="_csrf_header"]').attr('content');
+
+    // 모든 AJAX 요청에 CSRF 토큰 자동 포함
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+    
+    
+    
+    function fncSearch() {
+        // conditionTemp에 입력된 검색어를 hidden 필드인 condition에 설정
+        document.getElementById("condition").value = document.getElementById("conditionTemp").value;
+        
+        // 폼 제출
+        document.getElementById("searchForm").submit();
+    }
+    </script>
+
     <div id="wrap">
         <!-- header s -->
         <header id="header">
@@ -68,17 +92,16 @@
                             </div>
 
                             <div class="notice-wrap">
-                                <form id="searchForm" name="searchForm" action="https://web.dominos.co.kr/bbs/newsList"
-                                    method="post">
+                                <form id="searchForm" name="searchForm" action="./noticeSearch.do" method="post">
+                               	 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <input type="hidden" id="type" name="type" value="N">
                                     <input type="hidden" id="pageNo" name="pageNo" value="1">
                                     <div class="form-group srch-type">
                                         <div class="form-item">
                                             <div class="select-type2">
                                                 <select id="search" name="search">
-                                                    <option value="subject">제목</option>
-                                                    <option value="content">내용</option>
-                                                    <option value="all">제목+내용</option>
+                                                    <option value="title">제목</option>
+                                                    <option value="contents">내용</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -169,6 +192,8 @@
 
         <script src="../js/motion.js"></script>
         <script src="../js/ui.js"></script>
+        
+        
 </body>
 
 </html>

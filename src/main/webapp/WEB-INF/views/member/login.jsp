@@ -146,10 +146,10 @@
 								<p>아이디와 패스워드가 잘못되었습니다.</p>
 							</c:if>
                             <div class="form-item">
-                                <input type="text" name="id" id="id" maxlength="20" placeholder="아이디" value="" >
+                                <input type="text" name="id" id="id" maxlength="20" placeholder="아이디를 입력하세요" value="customer" >
                             </div>
                             <div class="form-item">
-                                <input type="password" placeholder="비밀번호" name="pass" id="passwd" maxlength="20" onkeydown="">
+                                <input type="password" placeholder="비밀번호" name="pass" id="passwd" maxlength="20" onkeydown="" value="22222222">
                             </div>
                             <div class="chk-item">
                                 <div class="chk-box v4">
@@ -167,7 +167,7 @@
                                 <button class="btn-type v4">로그인</button>
                             </div>
                             <div class="btn-wrap">
-                                <a href="../member/regist.do" class="btn-type-brd5">회원가입</a>
+                                <a href="../member/regist1.do" class="btn-type-brd5">회원가입</a>
                             </div>
                             
                             <div class="btn-sns-wrap">

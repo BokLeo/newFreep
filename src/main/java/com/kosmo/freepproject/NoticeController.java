@@ -75,13 +75,14 @@ public class NoticeController {
 	
 	@RequestMapping("/company/noticeSearch.do")
 	public String listSearch(Model model, HttpServletRequest req) {
-
+		System.out.println("noticeSeaarchhhhh active");
 		
 		ParameterDTO parameterDTO = new ParameterDTO();
 		//검색어가 있을경우 저장
 		parameterDTO.setCate(1);
-		parameterDTO.setSearchField(req.getParameter("searchField"));
-		parameterDTO.setSearchTxt(req.getParameter("searchtxt"));
+		parameterDTO.setSearchField(req.getParameter("search"));
+		parameterDTO.setSearchTxt(req.getParameter("conditionTemp"));
+		
 		
 		int totalRecordCount =
 			sqlSession.getMapper(BoardDAOImpl.class).getTotalCountSearch(parameterDTO);
@@ -103,6 +104,7 @@ public class NoticeController {
 		parameterDTO.setStart(start); 
 		parameterDTO.setEnd(end);
 		
+				
 		ArrayList<BoardDTO> lists =
 			sqlSession.getMapper(BoardDAOImpl.class).listPageSearch(parameterDTO);
 				
@@ -118,7 +120,7 @@ public class NoticeController {
 		}
 		model.addAttribute("lists", lists);		
 		
-		return "company/noticeView";
+		return "company/notice";
 	}
 	
 	

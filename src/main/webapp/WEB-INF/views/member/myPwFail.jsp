@@ -31,7 +31,7 @@ $(document).ready(function() {
 function mypage(){
 	var message = "${msg}";
 	alert(message);
-	location.href = "/freepproject/member/findPw.do";
+	location.href = "/member/findPw.do";
 }
 </script>
     <!-- header s -->
@@ -77,8 +77,8 @@ function mypage(){
                                 </span>
                             </p>
                             <div class="btn-wrap">
-                                <a href="/freepproject/index.do" class="btn-type v4">HOME</a>
-                                <a href="/freepproject/member/login.do" class="btn-type v6">로그인</a>
+                                <a href="/index.do" class="btn-type v4">HOME</a>
+                                <a href="/member/login.do" class="btn-type v6">로그인</a>
                             </div>
                         </div>
                     </article>

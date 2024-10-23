@@ -38,7 +38,7 @@ public class FrontEventController {
 	public String list(Model model, HttpServletRequest req) {
 		
 		int totalRecordCount =
-			sqlSession.getMapper(BoardDAOImpl.class).getTotalCount(1);
+			sqlSession.getMapper(BoardDAOImpl.class).getTotalCount(2);
 	
 		
 		//페이지 처리를 위한 설정값

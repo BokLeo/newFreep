@@ -81,7 +81,7 @@
                                             
                                             
                                             <dd>
-                                                <img src="../uploads/${dto.sfile2}" alt="">
+                                                <img src="../images/05community/${dto.sfile2}" alt="">
 
                                                 <div class="event_res">
                                                     <h6>주의사항</h6>
@@ -101,19 +101,17 @@
                                         <ul class="board-button">
                                             <li>
                                                 <span>이전</span>
-                                                <a href="./eventView.do?idx=${pre.b_idx }">${pre.title }
-                                                </a>
+												<a href="./eventView.do?idx=${next.b_idx }">${next.title }</a>                                                
                                             </li>
                                             <li>
                                                 <span>다음</span>
-                                                <a href="./eventView.do?idx=${next.b_idx }">${next.title }
-                                                </a>
+                                                <a href="./eventView.do?idx=${pre.b_idx }">${pre.title }</a>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
                                 <div class="btn-wrap">
-                                    <a href="http://localhost:8081/freepproject/community/event.do"  class="btn-type v2">목록</a>
+                                    <a href="http://localhost:8081/community/event.do"  class="btn-type v2">목록</a>
                                 </div>
                             </div>
 

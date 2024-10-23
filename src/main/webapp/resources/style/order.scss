@@ -3046,7 +3046,7 @@
       .menu-cart-btn {
         float: right;
         position: fixed;
-        right: 270px;
+        right: 20px;
         top: 387px;
         z-index: 100;
         background: #FF6510;
@@ -3062,7 +3062,8 @@
       .menu-cart-modal {
         width: 0px;
         position: fixed;
-        left: 1590px;
+        // left: 1590px;
+				right:110px;
         top: 300px;
         overflow: hidden;
         -webkit-transition: all 0.3s ease;
@@ -3076,7 +3077,7 @@
           width: 660px;
           height: 760px;
           overflow-y: scroll;
-          left: 900px;
+          right:110px;
           top: 160px;
           padding: 40px;
           background: #FFFFFF;
@@ -3582,7 +3583,10 @@
            }
           .prd-img{
             width:100%;
-            height: initial;
+            height: 200px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
             &:hover{
               img{
                 transform: scale(1.05);

@@ -8428,3 +8428,15 @@ html.fixed, body.fixed {
 
 /* paging END */
 /********************** 220207 KSB END ************************/
+
+.orderMoveTop{
+	position: fixed;
+    bottom: 50px;
+    right: 20px;
+}
+.orderMoveTopBtn{
+	width: 80px;
+    height: 80px;
+    background: transparent;
+    border: 1px solid #d9d9d9;
+}

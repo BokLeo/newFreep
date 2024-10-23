@@ -137,7 +137,6 @@ function reviewDetailOpen(idx){
 					if(res[goldKey]["P_NAME"]) p_name = res[goldKey]["P_NAME"];
 
 					if(res[goldKey]["D_NAME"]) var d_name = res[goldKey]["D_NAME"];
-
 					
 					if(res[goldKey].hasOwnProperty('dto')){
 						data.rv_idx = res[goldKey].dto["rv_idx"];
@@ -170,7 +169,7 @@ function reviewDetail(data, d_name, p_name ,recipe){
 	document.getElementById("title").innerText=data.title;
 	document.getElementById("postdate").innerText=data.postdate;
 	document.getElementById("contents").innerText=data.contents;
-	
+	console.log(data.rv_ofile1);
 	if(data.rv_sfile1){
 		$(".review-image-wrap").append(
 			'<div><img id="reviewImg1" src="" alt=""></div>' 
@@ -324,11 +323,6 @@ function reviewToCart(code){
 	                                                                
                                                             	</div>
                                                                
-                                                                <!-- <ul class="review-modal-cicleBtn">
-                                                                    <li class="review-img-cicle active"><button></button></li>
-                                                                    <li class="review-img-cicle"><button></button></li>
-                                                                    <li class="review-img-cicle"><button></button></li>
-                                                                </ul> -->
                                                             </div>
                                                         </div>
 

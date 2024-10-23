@@ -94,7 +94,7 @@
                                 </form:form>
                             </div>
                             <div class="btn-wrap">
-                                <a href="http://localhost:8081/freepproject/company/notice.do" class="btn-type v2">목록</a>
+                                <a href="./notice.do" class="btn-type v2">목록</a>
                             </div>
                         </article>
                     </div>

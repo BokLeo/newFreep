@@ -148,6 +148,9 @@ function reviewDetailOpen(idx){
 						data.rv_sfile1 = res[goldKey].dto["rv_sfile1"];
 						data.rv_sfile2 = res[goldKey].dto["rv_sfile2"];
 						data.rv_sfile3 = res[goldKey].dto["rv_sfile3"];
+						data.rv_ofile1 = res[goldKey].dto["rv_ofile1"];
+						data.rv_ofile2 = res[goldKey].dto["rv_ofile2"];
+						data.rv_ofile3 = res[goldKey].dto["rv_ofile3"];
 						data.like = res[goldKey].dto["like"];
 					}
 				}
@@ -171,23 +174,24 @@ function reviewDetail(data, d_name, p_name ,recipe){
 	document.getElementById("postdate").innerText=data.postdate;
 	document.getElementById("contents").innerText=data.contents;
 	
+	console.log("data : " + data);
 	if(data.rv_sfile1){
 		$(".review-image-wrap").append(
 			'<div><img id="reviewImg1" src="" alt=""></div>' 
 		);
-		document.getElementById("reviewImg1").src="/freepproject/uploads/"+data.rv_sfile1;
+		document.getElementById("reviewImg1").src="/uploads/"+data.rv_ofile1;
 	}
 	if(data.rv_sfile2){
 		$(".review-image-wrap").append(
 			'<div><img id="reviewImg2" src="" alt=""></div>' 
 		);
-		document.getElementById("reviewImg2").src="/freepproject/uploads/"+data.rv_sfile2;
+		document.getElementById("reviewImg2").src="/uploads/"+data.rv_ofile2;
 	}
 	if(data.rv_sfile3){
 		$(".review-image-wrap").append(
 			'<div><img id="reviewImg3" src="" alt=""></div>' 
 		);
-		document.getElementById("reviewImg3").src="/freepproject/uploads/"+data.rv_sfile3;
+		document.getElementById("reviewImg3").src="/uploads/"+data.rv_ofile3;
 	}
 	
 	
@@ -320,7 +324,7 @@ function reviewToCart(code){
                                                         <div class="con1-top-wrap">
                                                             <!-- 이미지 -->
                                                             <div class="img-wrap">
-                                                            	<div class="review-image-wrap">
+                                                            	<div class="review-image-wrap" style="width: 440px">
 	                                                                
                                                             	</div>
                                                                
@@ -344,7 +348,9 @@ function reviewToCart(code){
                                                                 <p class="review_title" id="title">입에서 새우랑 치즈가 춤춰요!</p>
                                                                 <div class="favorite-heart">
                                                                     <div class="favorite-heart">
-                                                                        <i class="material-icons unlike" onclick="reviewLike('9999')">favorite</i>
+                                                                    	<c:if test="${isLike}">
+                                                                        	<i class="material-icons unlike" onclick="reviewLike('9999')">favorite</i>
+                                                                        </c:if>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -378,28 +384,31 @@ function reviewToCart(code){
                                         	<c:forEach items="${listsBest }" var="row"> 
                                             <li>
                                                 <div class="img_wrap" onclick="reviewDetailOpen('${row.rv_idx}');">
-                                                    <a href="#best"><img src="../uploads/${row.rv_sfile1 }"></a>
+                                                    <a href="#best"><img src="../uploads/${row.rv_ofile1 }"></a>
                                                 </div>
                                                 <div class="text_wrap">
                                                     <div class="review_text">
                                                         <div class="review_icon diy"></div>
                                                         <div class="review_name">${row.writer}</div>
                                                         <div class="review_like">
-                                                            <div class="favorite-heart">
-                                                               <sec:authorize access="isAnonymous()">
-                                                                	<i class="login-request material-icons unlike">favorite</i>
-                                                                </sec:authorize>
-																<sec:authorize access="isAuthenticated()">
-																	<c:choose>
-																	   <c:when test="${row.like eq true}">
-																	  	<i class="material-icons unlike like" onclick="reviewLike('${row.rv_idx}')">favorite</i>
-																	  </c:when>
-																	  <c:otherwise>
-																	    <i class="material-icons unlike" onclick="reviewLike('${row.rv_idx}')">favorite</i>
-																	  </c:otherwise>
-																	</c:choose>
-																</sec:authorize>
-                                                            </div>
+<div class="favorite-heart">
+    <c:if test="${isLike}">
+        <sec:authorize access="isAnonymous()">
+            <i class="login-request material-icons unlike">favorite</i>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <c:choose>
+                <c:when test="${row.like eq true}">
+                    <i class="material-icons unlike like" onclick="reviewLike('${row.rv_idx}')">favorite</i>
+                </c:when>
+                <c:otherwise>
+                    <i class="material-icons unlike" onclick="reviewLike('${row.rv_idx}')">favorite</i>
+                </c:otherwise>
+            </c:choose>
+        </sec:authorize>
+    </c:if>
+</div>
+
                                                         </div>
                                                     </div>
                                                     <div class="review_cont">
@@ -442,7 +451,7 @@ function reviewToCart(code){
                                             	<c:set var="file" value="${row.rv_sfile1 }" />
                                                 <div class="img_wrap" onclick="reviewDetailOpen('${row.rv_idx}');">
 	                                                <c:if test="${file != null }">
-	                                                    <a href="#normal"><img src="../uploads/${row.rv_sfile1 }"></a>
+	                                                    <a href="#normal"><img src="../uploads/${row.rv_ofile1 }"></a>
 	                                                </c:if>
 	                                                <c:if test="${file == null }">
 	                                                    <a href="#normal"><img src="../uploads/normal_11110001"></a>
@@ -455,6 +464,8 @@ function reviewToCart(code){
                                                         <div class="review_like">
                                                         
                                                             <div class="favorite-heart">
+                                                            	<c:if test="${isLike}">
+                                                            	
                                                             	<!-- 미로그인 상태에서 클릭시 로그인하도록 하기 위해 나눠놓음 -->
                                                             	<sec:authorize access="isAnonymous()">
                                                                 	<i class="login-request material-icons unlike">favorite</i>
@@ -469,6 +480,7 @@ function reviewToCart(code){
 																	  </c:otherwise>
 																	</c:choose>
 																</sec:authorize>
+																</c:if>
                                                             </div>
                                                         </div>
                                                     </div>

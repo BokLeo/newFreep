@@ -32,7 +32,7 @@ function mypage(){
 	var message = "${msg}";
 	if("${url}"!=""){
 		//alert(message);
-		location.href = "/freepproject/mypage"+"${url}";
+		location.href = "/mypage"+"${url}";
 	}
 	else{
 		//alert(message);
@@ -81,7 +81,7 @@ function mypage(){
                                 </span>
                             </p>
                             <div class="btn-wrap">
-                                <a href="/freepproject/index.do" class="btn-type v4">HOME</a>
+                                <a href="/index.do" class="btn-type v4">HOME</a>
                             </div>
                         </div>
                     </article>

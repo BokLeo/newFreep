@@ -9,19 +9,29 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		<bean name="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	 <context:property-placeholder location="classpath:config/database.properties"/>
+	 <bean name="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-	    <property name="url" value="jdbc:oracle:thin:@localhost:1521/XEPDB1" />
-	    <property name="username" value="FREEP" />
-	    <property name="password" value="1234" />    
-	</bean>		
+	    <property name="url" value="${db.ReleaseUrl}" />
+	    <property name="username" value="${db.ReleaseUsername}" />
+	    <property name="password" value="${db.ReleasePassword}" />    
+	</bean>
+	
+	<!-- Dev 서버 접속 시 
+	<bean name="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+	    <property name="url" value="${db.DevUrl}" />
+	    <property name="username" value="${db.DevUsername}" />
+	    <property name="password" value="${db.DevPassword}" />    
+	</bean>
+	 -->
+	 
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">           
 	    <constructor-arg ref="dataSourceSpied" />               
 	    <property name="logFormatter">                   
 	      <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">                       
 	        <property name="loggingType" value="MULTI_LINE" />                       
-	        <property name="sqlPrefix" value="SQL : "/>                   
+	        <property name="sqlPrefix" value=""/>                   
 	      </bean>              
 	    </property>       
   	</bean>
